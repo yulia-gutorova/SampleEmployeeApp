@@ -1,19 +1,19 @@
 package se.jensen.exercise.department;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import se.jensen.api.DepartmentModel;
 import se.jensen.api.mapper.DepartmentModelsMapper;
 import se.jensen.entity.Department;
 import se.jensen.test.category.UnitTest;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
+//import org.junit.experimental.categories.Category;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Category(UnitTest.class)
+//@Category(UnitTest.class)
 
 public class TestDepartmentModelsMapper {
     @Test
@@ -24,8 +24,8 @@ public class TestDepartmentModelsMapper {
                 .departmentName("Department1")
                 .build());
         List<DepartmentModel> modelList = DepartmentModelsMapper.map(departmentList);
-        Assert.assertEquals(1,modelList.size());
-        Assert.assertEquals(Integer.valueOf(1),modelList.get(0).getDepartmentId());
-        Assert.assertEquals("Department1",modelList.get(0).getDepartmentName());
+        Assertions.assertEquals(1,modelList.size());
+        Assertions.assertEquals(Integer.valueOf(1),modelList.get(0).getDepartmentId());
+        Assertions.assertEquals("Department1",modelList.get(0).getDepartmentName());
     }
 }

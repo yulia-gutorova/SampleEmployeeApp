@@ -3,18 +3,22 @@ import liquibase.pro.packaged.D;
 import net.minidev.json.JSONUtil;
 import java.nio.channels.ScatteringByteChannel;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import se.jensen.entity.Department;
+
 import se.jensen.test.category.UnitTest;
 import se.jensen.dao.*;
 import se.jensen.service.*;
 import se.jensen.exercise.test.builder.DepartmentTestBuilder;
 
-import org.junit.experimental.categories.Category;
+//import org.junit.experimental.categories.Category;
 import org.junit.*;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 import static org.mockito.BDDMockito.*;
 
@@ -22,7 +26,9 @@ import java.util.Optional;
 import java.util.ArrayList;
 import java.util.List;
 
-@Category(UnitTest.class)
+import static org.junit.jupiter.api.Assertions.fail;
+
+//@Category(UnitTest.class)
 
 public class TestDepartmentService {
 
@@ -34,7 +40,7 @@ public class TestDepartmentService {
     private final String DEPARTMENTNAME = "Development";
 
 //-------------------------------------------------------------------------------------------------------------
-    @Before
+    @BeforeEach
     public void setUpp()
     {
         MockitoAnnotations.initMocks(this);
@@ -72,10 +78,10 @@ public class TestDepartmentService {
     {
         List <Department> allDepartments = departmentServiceImpl.getDepartments(); //findAll()
 
-        Assert.assertNotNull(allDepartments);
-        Assert.assertEquals(1, allDepartments.size());
-        Assert.assertEquals(DEPARTMENTID , allDepartments.get(0).getDepartmentId());
-        Assert.assertEquals(DEPARTMENTNAME, allDepartments.get(0).getDepartmentName());
+        Assertions.assertNotNull(allDepartments);
+        Assertions.assertEquals(1, allDepartments.size());
+        Assertions.assertEquals(DEPARTMENTID , allDepartments.get(0).getDepartmentId());
+        Assertions.assertEquals(DEPARTMENTNAME, allDepartments.get(0).getDepartmentName());
 
         verify(departmentDao, atLeastOnce()).findAll();
         verify(departmentDao, times(1)).findAll();
@@ -87,9 +93,9 @@ public class TestDepartmentService {
     {
         Department department = departmentServiceImpl.getDepartmentById(DEPARTMENTID);  //findById()
 
-        Assert.assertNotNull(department);
-        Assert.assertEquals(DEPARTMENTID , department.getDepartmentId());
-        Assert.assertEquals(DEPARTMENTNAME, department.getDepartmentName());
+        Assertions.assertNotNull(department);
+        Assertions.assertEquals(DEPARTMENTID , department.getDepartmentId());
+        Assertions.assertEquals(DEPARTMENTNAME, department.getDepartmentName());
 
         verify(departmentDao, atLeastOnce()).findById(DEPARTMENTID);
         verify(departmentDao, times(1)).findById(any(Integer.class));
@@ -106,9 +112,9 @@ public class TestDepartmentService {
 
         Department createdDepartment = departmentServiceImpl.create( departmentToCreate);
 
-        Assert.assertNotNull(createdDepartment);
-        Assert.assertEquals(DEPARTMENTID, createdDepartment.getDepartmentId());
-        Assert.assertEquals(DEPARTMENTNAME, createdDepartment.getDepartmentName());
+        Assertions.assertNotNull(createdDepartment);
+        Assertions.assertEquals(DEPARTMENTID, createdDepartment.getDepartmentId());
+        Assertions.assertEquals(DEPARTMENTNAME, createdDepartment.getDepartmentName());
 
         verify(departmentDao, times(1)).findById(any(Integer.class));
         verify(departmentDao, times(1)).save(any());
@@ -129,9 +135,9 @@ public class TestDepartmentService {
         Department departmentToUpdate = Department.builder().departmentId(DEPARTMENTID).departmentName(DEPARTMENTNAME).build();
         Department updatedDepartment = departmentServiceImpl.update(departmentToUpdate);
 
-        Assert.assertNotNull(updatedDepartment);
-        Assert.assertEquals(NEWDEPARTMENTID, updatedDepartment.getDepartmentId());
-        Assert.assertEquals(DEPARTMENTNAME, updatedDepartment.getDepartmentName());
+        Assertions.assertNotNull(updatedDepartment);
+        Assertions.assertEquals(NEWDEPARTMENTID, updatedDepartment.getDepartmentId());
+        Assertions.assertEquals(DEPARTMENTNAME, updatedDepartment.getDepartmentName());
 
         verify(departmentDao, times(1)).findById(any(Integer.class));
         verify(departmentDao, times(1)).save(any());
@@ -156,13 +162,13 @@ public class TestDepartmentService {
             Department depToCreate = Department.builder().departmentId(DEPARTMENTID).departmentName(DEPARTMENTNAME).build();
 
             Department createDepartment = departmentServiceImpl.create(depToCreate);
-            Assert.assertNotNull(createDepartment);
+            Assertions.assertNotNull(createDepartment);
             verify(departmentDao, times(1)).save(any());
             fail();
         }
         catch (EntityAlreadyInStorageException entityAlreadyInStorageException) {
             System.out.println("testCreateDepartmentIfDepartmentIsAlreadyInStorage: Entity with id 1 is already in storage");
-            Assert.assertEquals("Entity with id 1 already in storage", entityAlreadyInStorageException.getMessage());
+            Assertions.assertEquals("Entity with id 1 already in storage", entityAlreadyInStorageException.getMessage());
         }
         catch (Exception exception)
         {
@@ -185,7 +191,7 @@ public class TestDepartmentService {
         catch (EntityNotFoundException entityNotFoundException)
         {
             System.out.println("testDepartmentByIdNotFound: Entity with id 10 is not found by Id");
-            Assert.assertEquals("Entity with id 10 not found", entityNotFoundException.getMessage());
+            Assertions.assertEquals("Entity with id 10 not found", entityNotFoundException.getMessage());
         }
         catch (Exception exception)
         {
@@ -211,7 +217,7 @@ public class TestDepartmentService {
         catch (EntityNotFoundException entityNotFoundException)
         {
             System.out.println("testDepartmentToUpdateNotFound: Entity with id 10 is not found to update");
-            Assert.assertEquals("Entity with id 10 not found", entityNotFoundException.getMessage());
+            Assertions.assertEquals("Entity with id 10 not found", entityNotFoundException.getMessage());
         }
         catch (Exception exception)
         {
@@ -238,7 +244,7 @@ public class TestDepartmentService {
         catch (EntityNotFoundException entityNotFoundException)
         {
             System.out.println("testDepartmentToDeleteNotFound: Entity with id 10 is not found to delete");
-            Assert.assertEquals("Entity with id 10 not found", entityNotFoundException.getMessage());
+            Assertions.assertEquals("Entity with id 10 not found", entityNotFoundException.getMessage());
         }
         catch (Exception exception)
         {

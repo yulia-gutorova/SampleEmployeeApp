@@ -1,14 +1,14 @@
 package se.jensen.exercise.department;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import se.jensen.dao.DepartmentDatabaseEntry;
 import se.jensen.test.category.UnitTest;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
+//import org.junit.experimental.categories.Category;
 
 
-@Category(UnitTest.class)
+//@Category(UnitTest.class)
 
 public class TestDepartmentDatabaseEntryCreated {
     @Test
@@ -18,8 +18,8 @@ public class TestDepartmentDatabaseEntryCreated {
                 .departmentId(1)
                 .departmentName("NewDevelopment")
                 .build();
-        Assert.assertNotNull(departmentDatabaseEntry);
-        Assert.assertEquals(Integer.valueOf(1), departmentDatabaseEntry.getDepartmentId());
-        Assert.assertEquals("NewDevelopment", departmentDatabaseEntry.getDepartmentName());
+        Assertions.assertNotNull(departmentDatabaseEntry);
+        Assertions.assertEquals(Integer.valueOf(1), departmentDatabaseEntry.getDepartmentId());
+        Assertions.assertEquals("NewDevelopment", departmentDatabaseEntry.getDepartmentName());
     }
 }

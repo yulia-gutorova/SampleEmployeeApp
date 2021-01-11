@@ -1,5 +1,7 @@
 package se.jensen.exercise.department;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import se.jensen.test.category.IntegrationTest;
 import se.jensen.test.category.ManualTest;
 import se.jensen.dao.DepartmentDao;
@@ -12,8 +14,6 @@ import se.jensen.exercise.test.builder.DepartmentTestBuilder;
 import org.junit.FixMethodOrder;
 import org.junit.experimental.categories.Category;
 import org.junit.runners.MethodSorters;
-import org.junit.Assert;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -52,8 +52,8 @@ public class DepartmentDaoTest {
         System.out.println("-------Department after save-------");
         departmentsAfterSave.stream().forEach(System.out::println);
 
-        Assert.assertNotNull(department);
-        Assert.assertEquals(4, departmentsAfterSave.size() );
+        Assertions.assertNotNull(department);
+        Assertions.assertEquals(4, departmentsAfterSave.size() );
     }
 //-------------------------------------------------------------------------------------------------------------
 
@@ -73,8 +73,8 @@ public class DepartmentDaoTest {
         System.out.println("-------Department after update-------");
         departmentsAfterUpdate.stream().forEach(System.out::println);
 
-        Assert.assertNotNull(department);
-        Assert.assertEquals(4, departmentsAfterUpdate.size());
+        Assertions.assertNotNull(department);
+        Assertions.assertEquals(4, departmentsAfterUpdate.size());
     }
 //-------------------------------------------------------------------------------------------------------------
 
@@ -94,7 +94,7 @@ public class DepartmentDaoTest {
         System.out.println("-------Department after delete-------");
         departmentsAfterDelete.stream().forEach(System.out::println);
 
-        Assert.assertEquals(3, departmentsAfterDelete.size());
+        Assertions.assertEquals(3, departmentsAfterDelete.size());
     }
 
 }

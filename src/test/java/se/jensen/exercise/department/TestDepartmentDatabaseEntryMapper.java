@@ -1,18 +1,18 @@
 package se.jensen.exercise.department;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import se.jensen.dao.DepartmentDatabaseEntry;
 import se.jensen.entity.Department;
 import se.jensen.dao.mapper.DepartmentDatabaseEntryMapper;
 import se.jensen.test.category.UnitTest;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
+//import org.junit.experimental.categories.Category;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Category(UnitTest.class)
+//@Category(UnitTest.class)
 
 public class TestDepartmentDatabaseEntryMapper {
     @Test
@@ -23,9 +23,9 @@ public class TestDepartmentDatabaseEntryMapper {
                 .departmentName("Department2")
                 .build();
         Department result = DepartmentDatabaseEntryMapper.map(departmentDatabaseEntry);
-        Assert.assertNotNull(result);
-        Assert.assertEquals(Integer.valueOf(2), result.getDepartmentId());
-        Assert.assertEquals("Department2", result.getDepartmentName());
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(Integer.valueOf(2), result.getDepartmentId());
+        Assertions.assertEquals("Department2", result.getDepartmentName());
     }
     @Test
     public void testDepartmentDatabaseEntryMapperMethod2()
@@ -35,9 +35,9 @@ public class TestDepartmentDatabaseEntryMapper {
                 .departmentName("Department10")
                 .build();
         DepartmentDatabaseEntry result = DepartmentDatabaseEntryMapper.map(department);
-        Assert.assertNotNull(result);
-        Assert.assertEquals(Integer.valueOf(10), result.getDepartmentId());
-        Assert.assertEquals("Department10", result.getDepartmentName());
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(Integer.valueOf(10), result.getDepartmentId());
+        Assertions.assertEquals("Department10", result.getDepartmentName());
     }
     @Test
     public void testDepartmentDatabaseEntryMapperList()
@@ -48,8 +48,8 @@ public class TestDepartmentDatabaseEntryMapper {
                 .departmentName("Department11")
                 .build());
         List <Department> result = DepartmentDatabaseEntryMapper.map(list);
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals(list.get(0).getDepartmentId(), result.get(0).getDepartmentId());
-        Assert.assertEquals(list.get(0).getDepartmentName(), result.get(0).getDepartmentName());
+        Assertions.assertEquals(1, result.size());
+        Assertions.assertEquals(list.get(0).getDepartmentId(), result.get(0).getDepartmentId());
+        Assertions.assertEquals(list.get(0).getDepartmentName(), result.get(0).getDepartmentName());
     }
 }

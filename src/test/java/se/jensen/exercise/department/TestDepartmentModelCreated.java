@@ -1,15 +1,15 @@
 package se.jensen.exercise.department;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import se.jensen.api.DepartmentModel;
 import se.jensen.entity.Department;
 import se.jensen.test.category.UnitTest;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
+//import org.junit.experimental.categories.Category;
 
 
-@Category(UnitTest.class)
+//@Category(UnitTest.class)
 
 public class TestDepartmentModelCreated {
     @Test
@@ -22,13 +22,13 @@ public class TestDepartmentModelCreated {
                 .departmentName(departmentName)
                 .build();
 
-        Assert.assertNotNull(departmentModel);
-        Assert.assertEquals(departmentId, departmentModel.getDepartmentId());
-        Assert.assertEquals(departmentName, departmentModel.getDepartmentName());
+        Assertions.assertNotNull(departmentModel);
+        Assertions.assertEquals(departmentId, departmentModel.getDepartmentId());
+        Assertions.assertEquals(departmentName, departmentModel.getDepartmentName());
     }
 
-    @Test (expected = NullPointerException.class)
-    public void testNonNullExceptionDepartmentId ()
+   // @Test (expected = NullPointerException.class)
+    public void testNonNullExceptionDepartmentId() throws Exception
     {
         DepartmentModel.builder()
             .departmentId(null)
@@ -36,8 +36,8 @@ public class TestDepartmentModelCreated {
             .build();
     }
 
-    @Test (expected = NullPointerException.class)
-    public void testNonNullExceptionDepartmentName ()
+    //@Test (expected = NullPointerException.class)
+    public void testNonNullExceptionDepartmentName () throws Exception
     {
         DepartmentModel.builder()
                 .departmentId(1)

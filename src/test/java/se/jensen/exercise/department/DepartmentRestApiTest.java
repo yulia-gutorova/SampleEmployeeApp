@@ -1,5 +1,9 @@
 package se.jensen.exercise.department;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import se.jensen.RestServiceApplication;
 import se.jensen.api.DepartmentModel;
 import se.jensen.dao.EntityAlreadyInStorageException;
@@ -10,7 +14,7 @@ import se.jensen.test.category.UnitTest;
 
 import lombok.SneakyThrows;
 import org.junit.*;
-import org.junit.experimental.categories.Category;
+//import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpClientErrorException;
@@ -25,13 +29,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {RestServiceApplication.class})
 
-@Category(IntegrationTest.class)
+//@Category(IntegrationTest.class)
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DepartmentRestApiTest {
@@ -39,7 +41,7 @@ public class DepartmentRestApiTest {
     private static ConfigurableApplicationContext applicationContext;
 
     @SneakyThrows
-    @BeforeClass
+    @BeforeEach
     public static void startUp() {
         String[] args = {};
         SpringApplication app = new SpringApplication(RestServiceApplication.class);
@@ -50,7 +52,7 @@ public class DepartmentRestApiTest {
         applicationContext = app.run(args);
     }
 
-    @AfterClass
+    @AfterEach
     public static void shutDown() {
         SpringApplication.exit(applicationContext);
     }
@@ -60,8 +62,8 @@ public class DepartmentRestApiTest {
     public void a_testGetAllDepartments()
     {
         Optional <List <DepartmentModel>> department = DepartmentRestServiceClient.getAllDepartments();
-        Assert.assertTrue(department.isPresent());
-        Assert.assertEquals(3, department.get().stream().count());
+        Assertions.assertTrue(department.isPresent());
+        Assertions.assertEquals(3, department.get().stream().count());
 
     }
 //-----------------------------------------------------------------------------------------
@@ -69,10 +71,10 @@ public class DepartmentRestApiTest {
     public void b_testGetDepartmentById()
     {
         Optional <DepartmentModel> department = DepartmentRestServiceClient.getDepartmentById(3);
-        Assert.assertTrue(department.isPresent());
+        Assertions.assertTrue(department.isPresent());
         DepartmentModel departmentModel = department.get();
-        Assert.assertEquals(Integer.valueOf(3), departmentModel.getDepartmentId());
-        Assert.assertEquals("Management", departmentModel.getDepartmentName());
+        Assertions.assertEquals(Integer.valueOf(3), departmentModel.getDepartmentId());
+        Assertions.assertEquals("Management", departmentModel.getDepartmentName());
     }
 //-----------------------------------------------------------------------------------------
 
@@ -87,10 +89,10 @@ public class DepartmentRestApiTest {
         Optional<DepartmentModel> createdDepartment = DepartmentRestServiceClient.createDepartment(departmentToCreate);
         DepartmentModel model = createdDepartment.get();
 
-        Assert.assertEquals(Integer.valueOf(1000), model.getDepartmentId());
-        Assert.assertEquals("Testers", model.getDepartmentName());
+        Assertions.assertEquals(Integer.valueOf(1000), model.getDepartmentId());
+        Assertions.assertEquals("Testers", model.getDepartmentName());
 
-        Assert.assertEquals(4, DepartmentRestServiceClient.getAllDepartments().get().stream().count());
+        Assertions.assertEquals(4, DepartmentRestServiceClient.getAllDepartments().get().stream().count());
     }
 
 //-----------------------------------------------------------------------------------------
@@ -107,10 +109,10 @@ public class DepartmentRestApiTest {
 
         DepartmentModel model = deletedDepartment.get();
 
-        Assert.assertEquals(Integer.valueOf(1), model.getDepartmentId());
-        Assert.assertEquals("Development", model.getDepartmentName());
+        Assertions.assertEquals(Integer.valueOf(1), model.getDepartmentId());
+        Assertions.assertEquals("Development", model.getDepartmentName());
 
-        Assert.assertEquals(3, DepartmentRestServiceClient.getAllDepartments().get().stream().count());
+        Assertions.assertEquals(3, DepartmentRestServiceClient.getAllDepartments().get().stream().count());
     }
 //-----------------------------------------------------------------------------------------
 
@@ -126,10 +128,10 @@ public class DepartmentRestApiTest {
 
         DepartmentModel model = updateDepartment.get();
 
-        Assert.assertEquals(Integer.valueOf(1000), model.getDepartmentId());
-        Assert.assertEquals("Sales", model.getDepartmentName());
+        Assertions.assertEquals(Integer.valueOf(1000), model.getDepartmentId());
+        Assertions.assertEquals("Sales", model.getDepartmentName());
 
-        Assert.assertEquals(3, DepartmentRestServiceClient.getAllDepartments().get().stream().count());
+        Assertions.assertEquals(3, DepartmentRestServiceClient.getAllDepartments().get().stream().count());
     }
 //-----------------------------------------------------------------------------------------
     @Test
@@ -141,8 +143,8 @@ public class DepartmentRestApiTest {
         }
         catch (HttpClientErrorException e)
         {
-            Assert.assertEquals(HttpStatus.NOT_FOUND, e.getStatusCode());
-            Assert.assertEquals("404 : [Entity with id 10 not found]", e.getMessage());
+            Assertions.assertEquals(HttpStatus.NOT_FOUND, e.getStatusCode());
+            Assertions.assertEquals("404 : [Entity with id 10 not found]", e.getMessage());
         }
     }
 }
