@@ -1,21 +1,17 @@
 package se.jensen.exercise.department;
-import org.junit.experimental.categories.Category;
-import se.jensen.test.category.UnitTest;
-import se.jensen.dao.*;
 
-import liquibase.pro.packaged.I;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import se.jensen.dao.DepartmentDao;
+import se.jensen.dao.DepartmentDatabaseEntry;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-
-@Category(UnitTest.class)
+@Tag("unit")
 
 public class TestThatDepartmentIsStoredInDatabase {
 
@@ -25,7 +21,7 @@ public class TestThatDepartmentIsStoredInDatabase {
     private final Integer DEPARTMENTID = 1;
     private final String  DEPARTMENTNAME = "newDepartment";
 
-    @Before
+    @BeforeEach
     public void setUpMock()
     {
         when(departmentDao.save(any(DepartmentDatabaseEntry.class)))
@@ -44,8 +40,8 @@ public class TestThatDepartmentIsStoredInDatabase {
                 .build();
         DepartmentDatabaseEntry departmentDatabaseEntrySaved = departmentDao.save(departmentDatabaseEntry);
 
-        Assert.assertEquals(departmentDatabaseEntry.getDepartmentId(),departmentDatabaseEntrySaved.getDepartmentId());
-        Assert.assertEquals(departmentDatabaseEntry.getDepartmentName(),departmentDatabaseEntrySaved.getDepartmentName());
+        Assertions.assertEquals(departmentDatabaseEntry.getDepartmentId(),departmentDatabaseEntrySaved.getDepartmentId());
+        Assertions.assertEquals(departmentDatabaseEntry.getDepartmentName(),departmentDatabaseEntrySaved.getDepartmentName());
 
     }
 }

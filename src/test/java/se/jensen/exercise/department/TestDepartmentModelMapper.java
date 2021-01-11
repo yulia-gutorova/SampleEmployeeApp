@@ -1,17 +1,13 @@
 package se.jensen.exercise.department;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import se.jensen.api.DepartmentModel;
 import se.jensen.api.mapper.DepartmentModelMapper;
 import se.jensen.entity.Department;
-import se.jensen.test.category.UnitTest;
 
-import static org.junit.jupiter.api.Assertions.fail;
-//import org.junit.experimental.categories.Category;
-
-
-//@Category(UnitTest.class)
+@Tag("unit")
 
 public class TestDepartmentModelMapper {
     @Test

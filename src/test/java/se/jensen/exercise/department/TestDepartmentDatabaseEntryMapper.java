@@ -1,18 +1,16 @@
 package se.jensen.exercise.department;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import se.jensen.dao.DepartmentDatabaseEntry;
-import se.jensen.entity.Department;
 import se.jensen.dao.mapper.DepartmentDatabaseEntryMapper;
-import se.jensen.test.category.UnitTest;
-
-//import org.junit.experimental.categories.Category;
+import se.jensen.entity.Department;
 
 import java.util.ArrayList;
 import java.util.List;
 
-//@Category(UnitTest.class)
+@Tag("unit")
 
 public class TestDepartmentDatabaseEntryMapper {
     @Test

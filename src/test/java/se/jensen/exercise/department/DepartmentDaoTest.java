@@ -1,34 +1,31 @@
 package se.jensen.exercise.department;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import se.jensen.test.category.IntegrationTest;
-import se.jensen.test.category.ManualTest;
+import org.junit.FixMethodOrder;
+import org.junit.jupiter.api.*;
+//import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import se.jensen.H2JpaConfig;
+import se.jensen.LiquibaseConfigurer;
 import se.jensen.dao.DepartmentDao;
 import se.jensen.dao.mapper.DepartmentDatabaseEntryMapper;
 import se.jensen.entity.Department;
-import se.jensen.H2JpaConfig;
-import se.jensen.LiquibaseConfigurer;
-import se.jensen.exercise.test.builder.DepartmentTestBuilder;
-
-import org.junit.FixMethodOrder;
-import org.junit.experimental.categories.Category;
-import org.junit.runners.MethodSorters;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import se.jensen.test.category.UnitTest;
 
 import javax.ws.rs.core.Application;
 import java.util.List;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {Application.class, LiquibaseConfigurer.class, H2JpaConfig.class})
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@TestMethodOrder(MethodOrderer.Alphanumeric.class)
 
-@Category(UnitTest.class)
+@Tag("unit")
 
 public class DepartmentDaoTest {
 

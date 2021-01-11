@@ -1,28 +1,35 @@
 package se.jensen.exercise.department;
 
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import se.jensen.entity.Department;
-import se.jensen.test.category.UnitTest;
-
-import org.junit.*;
-import org.junit.experimental.categories.Category;
-
-@Category(UnitTest.class)
 
 public class TestThatNullPointerExceptionIsThrown {
+    @Test
+    public void testDepartmentIdNotNull()
+    {
 
-    @Test (expected = NullPointerException.class)
-    public void testDepartmentIdNotNull(){
-        Department.builder()
+        Assertions.assertThrows(NullPointerException.class, ()->
+
+        {Department.builder()
                 .departmentId(null)
                 .departmentName("Department1")
                 .build();
+    });
     }
 
-    @Test (expected = NullPointerException.class)
-    public void testDepartmentNameNotNull(){
-        Department.builder()
-                .departmentId(1)
-                .departmentName(null)
-                .build();
+    @Test
+    public void testDepartmentNameNotNull() {
+
+        Assertions.assertThrows(NullPointerException.class, () ->
+        {
+            Department.builder()
+                    .departmentId(1)
+                    .departmentName(null)
+                    .build();
+
+        });
     }
+
 }

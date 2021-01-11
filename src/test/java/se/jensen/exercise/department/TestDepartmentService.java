@@ -1,21 +1,15 @@
 package se.jensen.exercise.department;
-import liquibase.pro.packaged.D;
-import net.minidev.json.JSONUtil;
-import java.nio.channels.ScatteringByteChannel;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import se.jensen.entity.Department;
 
-import se.jensen.test.category.UnitTest;
 import se.jensen.dao.*;
 import se.jensen.service.*;
-import se.jensen.exercise.test.builder.DepartmentTestBuilder;
 
-//import org.junit.experimental.categories.Category;
-import org.junit.*;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
@@ -28,7 +22,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-//@Category(UnitTest.class)
+@Tag("unit")
 
 public class TestDepartmentService {
 

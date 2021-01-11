@@ -1,13 +1,12 @@
 package se.jensen.exercise.department;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import se.jensen.entity.Department;
-import se.jensen.test.category.UnitTest;
-
-import org.junit.*;
-import org.junit.experimental.categories.Category;
 
 
-@Category(UnitTest.class)
+@Tag("unit")
 
 public class TestThatDepartmentIsCreated {
 
@@ -22,9 +21,9 @@ public class TestThatDepartmentIsCreated {
                 .departmentName(DEPARTMENTNAME)
                 .build();
 
-        Assert.assertNotNull(department);
-        Assert.assertEquals(DEPARTMENTID, department.getDepartmentId());
-        Assert.assertEquals(DEPARTMENTNAME, department.getDepartmentName());
+        Assertions.assertNotNull(department);
+        Assertions.assertEquals(DEPARTMENTID, department.getDepartmentId());
+        Assertions.assertEquals(DEPARTMENTNAME, department.getDepartmentName());
     }
 
 }

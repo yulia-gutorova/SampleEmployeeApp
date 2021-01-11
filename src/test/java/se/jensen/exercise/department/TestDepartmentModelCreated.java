@@ -1,15 +1,11 @@
 package se.jensen.exercise.department;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import se.jensen.api.DepartmentModel;
-import se.jensen.entity.Department;
-import se.jensen.test.category.UnitTest;
 
-//import org.junit.experimental.categories.Category;
-
-
-//@Category(UnitTest.class)
+@Tag("unit")
 
 public class TestDepartmentModelCreated {
     @Test
@@ -27,22 +23,27 @@ public class TestDepartmentModelCreated {
         Assertions.assertEquals(departmentName, departmentModel.getDepartmentName());
     }
 
-   // @Test (expected = NullPointerException.class)
-    public void testNonNullExceptionDepartmentId() throws Exception
-    {
-        DepartmentModel.builder()
-            .departmentId(null)
-            .departmentName("Department")
-            .build();
-    }
+     @Test
+    public void testNonNullExceptionDepartmentId() {
+         Assertions.assertThrows(NullPointerException.class, () ->
+         {
+             DepartmentModel.builder()
+                     .departmentId(null)
+                     .departmentName("Department")
+                     .build();
+         });
+     }
 
-    //@Test (expected = NullPointerException.class)
-    public void testNonNullExceptionDepartmentName () throws Exception
+    @Test
+    public void testNonNullExceptionDepartmentName ()
     {
-        DepartmentModel.builder()
-                .departmentId(1)
-                .departmentName(null)
-                .build();
+        Assertions.assertThrows(NullPointerException.class, () ->
+        {
+            DepartmentModel.builder()
+                    .departmentId(1)
+                    .departmentName(null)
+                    .build();
+        });
     }
 
 }

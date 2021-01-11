@@ -1,47 +1,40 @@
 package se.jensen.exercise.department;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import se.jensen.RestServiceApplication;
-import se.jensen.api.DepartmentModel;
-import se.jensen.dao.EntityAlreadyInStorageException;
-import se.jensen.exercise.department.client.DepartmentRestServiceClient;
-import se.jensen.RestServiceApplication;
-import se.jensen.test.category.IntegrationTest;
-import se.jensen.test.category.UnitTest;
-
 import lombok.SneakyThrows;
-import org.junit.*;
-//import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.client.HttpClientErrorException;
+import org.junit.FixMethodOrder;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.junit.runners.MethodSorters;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.http.HttpStatus;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import org.springframework.web.client.HttpClientErrorException;
+import se.jensen.RestServiceApplication;
+import se.jensen.api.DepartmentModel;
+import se.jensen.exercise.department.client.DepartmentRestServiceClient;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {RestServiceApplication.class})
 
-//@Category(IntegrationTest.class)
+@Tag("integration")
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@TestMethodOrder(MethodOrderer.Alphanumeric.class)
 public class DepartmentRestApiTest {
 
     private static ConfigurableApplicationContext applicationContext;
 
     @SneakyThrows
-    @BeforeEach
+    @BeforeAll
     public static void startUp() {
         String[] args = {};
         SpringApplication app = new SpringApplication(RestServiceApplication.class);
@@ -52,7 +45,7 @@ public class DepartmentRestApiTest {
         applicationContext = app.run(args);
     }
 
-    @AfterEach
+    @AfterAll
     public static void shutDown() {
         SpringApplication.exit(applicationContext);
     }
@@ -95,10 +88,29 @@ public class DepartmentRestApiTest {
         Assertions.assertEquals(4, DepartmentRestServiceClient.getAllDepartments().get().stream().count());
     }
 
+    //-----------------------------------------------------------------------------------------
+
+    @Test
+    public void d_testUpdateDepartment()
+    {
+        DepartmentModel departmentToUpdate = DepartmentModel.builder()
+                .departmentId(1000)
+                .departmentName("Sales")
+                .build();
+
+        Optional <DepartmentModel> updateDepartment = DepartmentRestServiceClient.updateDepartment(departmentToUpdate);
+
+        DepartmentModel model = updateDepartment.get();
+
+        Assertions.assertEquals(Integer.valueOf(1000), model.getDepartmentId());
+        Assertions.assertEquals("Sales", model.getDepartmentName());
+
+        Assertions.assertEquals(4, DepartmentRestServiceClient.getAllDepartments().get().stream().count());
+    }
 //-----------------------------------------------------------------------------------------
 
     @Test
-    public void d_testDeleteDepartment ()
+    public void e_testDeleteDepartment ()
     {
         DepartmentModel departmentToDelete = DepartmentModel.builder()
                 .departmentId(1)
@@ -114,28 +126,10 @@ public class DepartmentRestApiTest {
 
         Assertions.assertEquals(3, DepartmentRestServiceClient.getAllDepartments().get().stream().count());
     }
-//-----------------------------------------------------------------------------------------
 
-    @Test
-    public void e_testUpdateDepartment()
-    {
-        DepartmentModel departmentToUpdate = DepartmentModel.builder()
-                .departmentId(1000)
-                .departmentName("Sales")
-                .build();
-
-        Optional <DepartmentModel> updateDepartment = DepartmentRestServiceClient.updateDepartment(departmentToUpdate);
-
-        DepartmentModel model = updateDepartment.get();
-
-        Assertions.assertEquals(Integer.valueOf(1000), model.getDepartmentId());
-        Assertions.assertEquals("Sales", model.getDepartmentName());
-
-        Assertions.assertEquals(3, DepartmentRestServiceClient.getAllDepartments().get().stream().count());
-    }
 //-----------------------------------------------------------------------------------------
     @Test
-    public void TestErrorHandling()
+    public void f_TestErrorHandling()
     {
         try
         {
