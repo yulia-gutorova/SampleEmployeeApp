@@ -33,6 +33,7 @@ public class DepartmentDaoTest {
     private DepartmentDao departmentDao;
 
 //-------------------------------------------------------------------------------------------------------------
+    @DisplayName("Test to save a new Department")
     @Test
     public void a_testSaveNewDepartment()
     {
