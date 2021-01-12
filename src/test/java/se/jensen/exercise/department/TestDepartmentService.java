@@ -1,9 +1,6 @@
 package se.jensen.exercise.department;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import se.jensen.entity.Department;
 
@@ -67,6 +64,7 @@ public class TestDepartmentService {
     }
 //-------------------------------------------------------------------------------------------------------------
 
+    @DisplayName("Test to get all Departments")
     @Test
     public void  testGetAllDepartments()
     {
@@ -82,6 +80,7 @@ public class TestDepartmentService {
     }
     //-------------------------------------------------------------------------------------------------------------
 
+    @DisplayName("Test to get Department by id")
     @Test
     public void testGetDepartmentById ()
     {
@@ -96,6 +95,7 @@ public class TestDepartmentService {
     }
     //-------------------------------------------------------------------------------------------------------------
 
+    @DisplayName("Test to delete Department")
     @Test
     public void testCreateDepartment()  //findByAll, save
     {
@@ -115,6 +115,7 @@ public class TestDepartmentService {
     }
     //-------------------------------------------------------------------------------------------------------------
 
+    @DisplayName("Test to update Department")
     @Test
     public void testUpdateDepartment()  //findById, save
     {
@@ -138,6 +139,7 @@ public class TestDepartmentService {
     }
     //-------------------------------------------------------------------------------------------------------------
 
+    @DisplayName("Test to delete Department")
     @Test
     public void testRemoveDepartment()  //findByAll, delete
     {
@@ -149,6 +151,7 @@ public class TestDepartmentService {
     }
     //-------------------------------------------------------------------------------------------------------------
 
+    @DisplayName("Test that Department is already in storage")
     @Test
     public void testCreateDepartmentIfDepartmentIsAlreadyInStorage() {
 
@@ -171,6 +174,7 @@ public class TestDepartmentService {
     }
     //-------------------------------------------------------------------------------------------------------------
 
+    @DisplayName("Test that Department by id is not found")
     @Test
     public void testDepartmentByIdNotFound()
     {
@@ -194,6 +198,7 @@ public class TestDepartmentService {
     }
     //-------------------------------------------------------------------------------------------------------------
 
+    @DisplayName("Test to that Department to update is not found")
     @Test
     public void testDepartmentToUpdateNotFound ()
     {
@@ -220,6 +225,7 @@ public class TestDepartmentService {
     }
     //-------------------------------------------------------------------------------------------------------------
 
+    @DisplayName("Test that Department to delete not found")
     @Test
     public void testDepartmentToDeleteNotFound ()
     {

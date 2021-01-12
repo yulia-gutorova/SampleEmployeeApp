@@ -1,6 +1,7 @@
 package se.jensen.exercise.department;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import se.jensen.entity.Department;
@@ -10,6 +11,7 @@ import se.jensen.entity.Department;
 
 public class TestThatDepartmentIsCreated {
 
+    @DisplayName("Test that Department is created")
     @Test
     public void testThatDepartmentIsCreated()
     {

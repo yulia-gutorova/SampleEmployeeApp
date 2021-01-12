@@ -1,5 +1,9 @@
 package se.jensen.exercise.department;
 
+import se.jensen.RestServiceApplication;
+import se.jensen.api.DepartmentModel;
+import se.jensen.exercise.department.client.DepartmentRestServiceClient;
+
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -7,12 +11,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import se.jensen.RestServiceApplication;
-import se.jensen.api.DepartmentModel;
-import se.jensen.exercise.department.client.DepartmentRestServiceClient;
 
 import java.util.Collections;
 import java.util.Optional;

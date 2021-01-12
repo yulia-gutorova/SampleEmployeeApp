@@ -1,6 +1,7 @@
 package se.jensen.exercise.department;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import se.jensen.api.DepartmentModel;
@@ -13,6 +14,8 @@ import java.util.List;
 @Tag("unit")
 
 public class TestDepartmentModelsMapper {
+
+    @DisplayName("Test to convert list of Department to list of DepartmentModel")
     @Test
     public void testDepartmentModelsMapper(){
         List<Department> departmentList = new ArrayList<>();

@@ -1,9 +1,6 @@
 package se.jensen.exercise.department;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import se.jensen.dao.DepartmentDao;
 import se.jensen.dao.DepartmentDatabaseEntry;
 
@@ -31,6 +28,7 @@ public class TestThatDepartmentIsStoredInDatabase {
                         .build());
     }
 
+    @DisplayName("Test that departmentDatabaseEntry is stored in database")
     @Test
     public void testIsStored()
     {

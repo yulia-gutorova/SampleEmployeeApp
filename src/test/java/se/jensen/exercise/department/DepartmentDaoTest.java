@@ -1,16 +1,10 @@
 package se.jensen.exercise.department;
 
-import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.*;
-//import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtendWith;
-
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
 import se.jensen.H2JpaConfig;
 import se.jensen.LiquibaseConfigurer;
 import se.jensen.dao.DepartmentDao;
@@ -55,6 +49,7 @@ public class DepartmentDaoTest {
     }
 //-------------------------------------------------------------------------------------------------------------
 
+    @DisplayName("Test to update a Department")
     @Test
     public void b_testUpdateDepartment()
     {
@@ -76,6 +71,7 @@ public class DepartmentDaoTest {
     }
 //-------------------------------------------------------------------------------------------------------------
 
+    @DisplayName("Test to delete a Department")
     @Test
     public void c_testDeleteNewDepartment()
     {

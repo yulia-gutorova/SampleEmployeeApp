@@ -51,6 +51,7 @@ public class DepartmentRestApiTest {
     }
 
 //-----------------------------------------------------------------------------------------
+    @DisplayName("Test to get all Departments")
     @Test
     public void a_testGetAllDepartments()
     {
@@ -60,6 +61,7 @@ public class DepartmentRestApiTest {
 
     }
 //-----------------------------------------------------------------------------------------
+    @DisplayName("Test to get a Department by id")
     @Test
     public void b_testGetDepartmentById()
     {
@@ -71,6 +73,7 @@ public class DepartmentRestApiTest {
     }
 //-----------------------------------------------------------------------------------------
 
+    @DisplayName("Test to create a new Department")
     @Test
     public void c_testCreateNewDepartment()
     {
@@ -90,6 +93,7 @@ public class DepartmentRestApiTest {
 
     //-----------------------------------------------------------------------------------------
 
+    @DisplayName("Test to update a Department")
     @Test
     public void d_testUpdateDepartment()
     {
@@ -109,6 +113,7 @@ public class DepartmentRestApiTest {
     }
 //-----------------------------------------------------------------------------------------
 
+    @DisplayName("Test to delete a Department")
     @Test
     public void e_testDeleteDepartment ()
     {
@@ -128,6 +133,7 @@ public class DepartmentRestApiTest {
     }
 
 //-----------------------------------------------------------------------------------------
+    @DisplayName("Test to that Department is not found")
     @Test
     public void f_TestErrorHandling()
     {

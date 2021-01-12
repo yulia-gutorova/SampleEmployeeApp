@@ -1,6 +1,7 @@
 package se.jensen.exercise.department;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import se.jensen.dao.DepartmentDatabaseEntry;
@@ -8,6 +9,8 @@ import se.jensen.dao.DepartmentDatabaseEntry;
 @Tag("unit")
 
 public class TestDepartmentDatabaseEntryCreated {
+
+    @DisplayName("Test that DepartmentDatabaseEntry is created")
     @Test
     public void testDepartmentDatabaseEntryCreated()
     {

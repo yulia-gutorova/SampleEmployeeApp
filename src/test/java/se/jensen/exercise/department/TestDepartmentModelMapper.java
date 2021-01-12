@@ -1,6 +1,7 @@
 package se.jensen.exercise.department;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import se.jensen.api.DepartmentModel;
@@ -10,6 +11,8 @@ import se.jensen.entity.Department;
 @Tag("unit")
 
 public class TestDepartmentModelMapper {
+
+    @DisplayName("Test to convert DepartmentModel to Department")
     @Test
     public void testDepartmentModelMapperMethod1(){
         DepartmentModel departmentModel= DepartmentModel.builder()
@@ -21,6 +24,7 @@ public class TestDepartmentModelMapper {
         Assertions.assertEquals("Development",result.getDepartmentName());
     }
 
+    @DisplayName("Test to convert Department to DepartmentModel")
     @Test
     public void testDepartmentModelMapperMethod2(){
         Department department= Department.builder().departmentId(2).departmentName("Sales").build();
