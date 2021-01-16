@@ -1,66 +1,17 @@
 package se.jensen.exercise.department;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import lombok.SneakyThrows;
-
 import org.junit.jupiter.api.*;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.boot.Banner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-import se.jensen.RestServiceApplication;
 
-import java.util.Collections;
 import java.util.List;
 
 @TestMethodOrder(MethodOrderer.Alphanumeric.class)
 
-public class SeleniumTestRadioButton {
-
-    private static ConfigurableApplicationContext applicationContext;
-
+public class SeleniumTestRadioButton extends SeleniumSetUppClass{
 
     String SITE_URL = "https://www.seleniumeasy.com/test/basic-radiobutton-demo.html";
-    public static WebDriver driver;
-    public WebDriverWait wait;
-
-    private static void sleep(long milliseconds) {
-        try {
-            Thread.sleep(milliseconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @SneakyThrows
-    @BeforeAll
-    public static void setUpp()
-    {
-        String[] args = {};
-        SpringApplication app = new SpringApplication(RestServiceApplication.class);
-        app.setDefaultProperties(Collections
-                .singletonMap("server.port", "8080"));
-        app.setBannerMode(Banner.Mode.CONSOLE);
-        app.setLogStartupInfo(false);
-        applicationContext = app.run(args);
-
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        sleep(1000);
-    }
-
-    @AfterAll
-    public static void tearDown()
-    {
-        driver.quit();
-        SpringApplication.exit(applicationContext);
-    }
+    Integer i,j;
 
     @Test
     public void a_openPage()
@@ -73,33 +24,86 @@ public class SeleniumTestRadioButton {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Radio Button Demo - Click on button to get the selected value")
     public void b_clickOnRadioButton()
     {
-        String str;
-        List<WebElement> radioButtons1 = driver.findElements(By.xpath("//input[@name='optradio']"));
+        List<WebElement> radioButtons = driver.findElements(By.xpath("//input[@name='optradio']"));
 
-            for (int i = 0; i < radioButtons1.size(); i++)
+            for (int i = 0; i < radioButtons.size(); i++)
             {
-                radioButtons1.get(i).click();
+                radioButtons.get(i).click();
                 driver.findElement(By.id("buttoncheck")).click();
                 sleep(2000);
-                switch (radioButtons1.get(i).getAttribute("value"))
+                switch (radioButtons.get(i).getAttribute("value"))
                     {
                         case "Male":
-                            Assertions.assertTrue(driver.findElement(By.cssSelector(".radiobutton")).getText().contains("Radio button 'Male' is checked"));
+                            Assertions.assertTrue(driver.findElement(By.xpath("//p[@class='radiobutton']")).getText().contains("Radio button 'Male' is checked"));
                             break;
                         case "Female":
-                            Assertions.assertTrue(driver.findElement(By.cssSelector(".radiobutton")).getText().contains("Radio button 'Female' is checked"));
+                            Assertions.assertTrue(driver.findElement(By.xpath("//p[@class='radiobutton']")).getText().contains("Radio button 'Female' is checked"));
                             break;
                     }
             }
     }
 
     @Test
-    public void b_clickOnGroupsRadioButton()
-    {
 
+    @DisplayName("Group Radio Buttons Demo - Click on button to get the selected value from group")
+    public void c_clickOnGroupsRadioButton()
+    {
+        List <WebElement> sex = driver.findElements(By.xpath("//input[@name='gender']"));
+        List <WebElement> ageGroup = driver.findElements(By.xpath("//input[@name='ageGroup']"));
+
+        for ( i =0; i< sex.size(); i++)
+        {
+            sex.get(i).click();
+            sleep(2000);
+
+           for ( j=0; j<ageGroup.size(); j++)
+           {
+                ageGroup.get(j).click();
+                sleep(2000);
+                driver.findElement(By.xpath("//button[@onclick='getValues();']")).click();
+                sleep(2000);
+                WebElement groupradiobutton = driver.findElement(By.xpath("//p[@class='groupradiobutton']"));
+                groupradiobutton.click();
+
+               if (sex.get(i).getAttribute("value").equals("Male"))
+                {
+                    switch (ageGroup.get(j).getAttribute("value"))
+                    {
+                        case "0 - 5":
+                            Assertions.assertTrue(groupradiobutton.getText().contains("Sex : Male\n" + "Age group: 0 - 5"));
+                            break;
+                        case "5 - 15":
+                            Assertions.assertTrue(groupradiobutton.getText().contains("Sex : Male\n" + "Age group: 5 - 15"));
+                            break;
+
+                        case "15 - 50":
+                            Assertions.assertTrue(groupradiobutton.getText().contains("Sex : Male\n" + "Age group: 15 - 50"));
+                            break;
+                    }
+                }
+               else
+               {
+                   switch (ageGroup.get(j).getAttribute("value"))
+                   {
+                       case "0 - 5":
+                           Assertions.assertTrue(groupradiobutton.getText().contains("Sex : Female\n" + "Age group: 0 - 5"));
+                           break;
+                       case "5 - 15":
+                           Assertions.assertTrue(groupradiobutton.getText().contains("Sex : Female\n" + "Age group: 5 - 15"));
+                           break;
+
+                       case "15 - 50":
+                           Assertions.assertTrue(groupradiobutton.getText().contains("Sex : Female\n" + "Age group: 15 - 50"));
+                           break;
+                   }
+               }
+           }
+        }
     }
+
+
 
 }

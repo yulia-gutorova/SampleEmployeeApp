@@ -69,7 +69,7 @@ public class SeleniumTestCheckbox {
     }
 
     @Test
-    @DisplayName("Open a website")
+    @DisplayName("Open a page")
     public void a_openPage()
     {
         driver.get(SITE_URL);
