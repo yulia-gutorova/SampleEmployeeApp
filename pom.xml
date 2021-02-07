@@ -40,12 +40,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <version>2.3.4.RELEASE</version>
             <scope>test</scope>
-            <exclusions>
+<!--            <exclusions>
                 <exclusion>
                     <groupId>org.junit.vintage</groupId>
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
-            </exclusions>
+            </exclusions>-->
         </dependency>
         <dependency>
             <groupId>javax.ws.rs</groupId>
@@ -132,6 +132,12 @@
             <artifactId>cucumber-jvm-deps</artifactId>
             <version>1.0.6</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>3.1.5</version>
         </dependency>
     </dependencies>
 

@@ -13,7 +13,7 @@ public class Listener extends RunListener {
         System.out.println(Colour.RED + "\n-----TestListener-----\n" + Colour.NO);
         JUnitCore core = new JUnitCore();
         core.addListener(new Listener());
-        core.run(DepartmentTestSuite.class);
+        core.run(SeleniumTestCheckbox.class);
         System.out.println(Colour.RED + "\n-----End of testListener-----\n" + Colour.NO);
     }
 

@@ -5,7 +5,7 @@ import org.junit.platform.suite.api.SelectClasses;
 import org.junit.runner.RunWith;
 
 
-@RunWith(JUnitPlatform.class)
+/*@RunWith(JUnitPlatform.class)
 @SelectClasses({
         TestThatDepartmentIsCreated.class,
         TestThatDepartmentIsStoredInDatabase.class,
@@ -18,7 +18,9 @@ import org.junit.runner.RunWith;
         DepartmentRestApiTest.class,
         TestDepartmentService.class,
         TestThatNullPointerExceptionIsThrown.class
-})
+})*/
+
+
 
 public class DepartmentTestSuite {
 }
