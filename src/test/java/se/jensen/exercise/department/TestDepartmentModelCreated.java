@@ -27,7 +27,7 @@ public class TestDepartmentModelCreated {
     }
 
     @DisplayName("Test that DepartmentId can not be null")
-     @Test
+    @Test
     public void testNonNullExceptionDepartmentId() {
          Assertions.assertThrows(NullPointerException.class, () ->
          {

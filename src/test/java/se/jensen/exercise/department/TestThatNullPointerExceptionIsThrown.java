@@ -24,7 +24,6 @@ public class TestThatNullPointerExceptionIsThrown {
     }
 
     @DisplayName("Test that departmentName can not be null")
-    @Disabled
     @Test
     public void testDepartmentNameNotNull() {
 
