@@ -30,6 +30,7 @@ public class TestThatDepartmentIsStoredInDatabase {
 
     @DisplayName("Test that departmentDatabaseEntry is stored in database")
     @Test
+    @Disabled
     public void testIsStored()
     {
         DepartmentDatabaseEntry departmentDatabaseEntry = DepartmentDatabaseEntry.builder()

@@ -1,7 +1,8 @@
-# Java SpringBoot Unit Training Project
+# Training Project for unit testing of sample Java SpringBoot app 
 
+## About
 This is a training project to study JUnit5 for unit and integration testing. 
-
+There is also an integration with SonarCloud for test coverage and test quality analysis.
 
 ## Getting Started
 
