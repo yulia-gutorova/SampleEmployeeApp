@@ -4,6 +4,11 @@
 This is a training project to study JUnit5 for unit and integration testing. 
 There is also an integration with SonarCloud for test coverage and test quality analysis.
 
+## Continuous Integration Builds
+
+* Build status GitHub Actions: [![Java CI with Maven](https://github.com/yulia-gutorova/SampleEmployeeApp/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/yulia-gutorova/SampleEmployeeApp/actions/workflows/maven.yml)
+* Code Coverage usung [JaCoCo](https://www.eclemma.org/jacoco/):
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
